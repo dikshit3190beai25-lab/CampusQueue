@@ -1,0 +1,22 @@
+/* =========================================================
+   assignment.css — styles specific to assignment.html
+   ========================================================= */
+
+.assignment-list{ display:flex; flex-direction:column; gap:12px; }
+.assignment-card{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  background: var(--bg-card); border:1px solid var(--border-soft);
+  border-radius: var(--radius-lg); padding:16px 20px; box-shadow: var(--shadow);
+}
+.assignment-check{
+  width:22px; height:22px; border-radius:7px; flex-shrink:0;
+  border:1.6px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:12px; cursor:pointer; transition: all .15s ease;
+}
+.assignment-card.done .assignment-check{ background: var(--blue); border-color: var(--blue); }
+.assignment-body{ flex:1; min-width:180px; }
+.assignment-title{ font-size:14px; font-weight:700; margin-bottom:4px; }
+.assignment-card.done .assignment-title{ text-decoration:line-through; color: var(--text-3); }
+.assignment-sub{ font-size:12px; color: var(--text-2); }
+.assignment-right{ display:flex; align-items:center; gap:10px; margin-left:auto; }

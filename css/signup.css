@@ -1,0 +1,8 @@
+/* =========================================================
+   signup.css — styles for signup.html
+   Imports the styling shared with login.html, so both
+   pages stay visually identical without duplicating rules.
+   ========================================================= */
+@import url('auth-shared.css');
+
+/* No signup-only overrides yet — add page-specific rules below. */

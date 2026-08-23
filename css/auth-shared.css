@@ -1,0 +1,187 @@
+/* =========================================================
+   auth-shared.css — shared styling for the login and signup
+   pages (imported by css/login.css and css/signup.css).
+   This file intentionally does not include base.css/tokens —
+   include base.css on the page itself as well.
+
+   Mobile-first: tighter card padding by default, roomier
+   once there's space to spare (480px+).
+   ========================================================= */
+
+.auth-body{
+  min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(77,107,254,.16), transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(47,212,165,.10), transparent 45%),
+    var(--bg-page);
+}
+.auth-card{
+  width:100%; max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 26px 22px 24px;
+}
+
+@media (min-width: 480px){
+  .auth-body{ padding: 24px; }
+  .auth-card{ padding: 34px 32px 30px; }
+}
+.auth-brand{
+  display:flex; align-items:center; gap:10px; margin-bottom:24px;
+  text-decoration:none; color:inherit; cursor:pointer;
+}
+.auth-brand:hover{ opacity:.85; }
+.auth-brand .brand-mark{ width:36px; height:36px; border-radius:11px; font-size:16px; }
+.auth-brand .brand-name{ font-size:18px; }
+
+.auth-heading{ font-size:21px; font-weight:800; letter-spacing:-.01em; margin-bottom:5px; }
+.auth-sub{ font-size:13px; color: var(--text-2); margin-bottom:20px; line-height:1.5; }
+
+.form-error {
+  display: none;
+  background: var(--coral-dim);
+  border: 1px solid rgba(255, 107, 122, 0.35);
+  color: var(--coral);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  line-height: 1.4;
+  animation: authShake 0.35s ease;
+}
+.form-error.show {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-error.show::before {
+  content: "⚠️";
+  font-size: 14px;
+}
+
+@keyframes authShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.field{ margin-bottom:15px; }
+.field label{
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:12px; font-weight:700; color: var(--text-2);
+  margin-bottom:6px;
+}
+.field input{
+  width:100%; background: var(--bg-input); border:1px solid var(--border);
+  border-radius:11px; padding:11px 13px; font-size:13.5px; color: var(--text-1);
+  font-family:inherit; outline:none; transition: border-color .15s ease, box-shadow .15s ease;
+}
+.field input:focus{
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
+.field-hint{ font-size:11px; color: var(--text-3); margin-top:5px; }
+
+/* Password field with show/hide toggle */
+.password-field{ position:relative; }
+.password-field input{ padding-right:40px; }
+.password-toggle-btn{
+  position:absolute; top:50%; right:4px; transform:translateY(-50%);
+  width:32px; height:32px; display:flex; align-items:center; justify-content:center;
+  background:transparent; border:none; border-radius:8px; cursor:pointer;
+  color: var(--text-3); transition: color .15s ease, background .15s ease;
+}
+.password-toggle-btn:hover{ color: var(--text-1); background: var(--bg-input); }
+.password-toggle-btn svg{ width:18px; height:18px; }
+.password-toggle-btn .icon-eye-off{ display:none; }
+.password-toggle-btn.is-visible .icon-eye{ display:none; }
+.password-toggle-btn.is-visible .icon-eye-off{ display:block; }
+
+
+/* Captcha Verification Column / Section */
+.captcha-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.captcha-display-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.captcha-canvas-wrap {
+  flex: 1;
+  height: 44px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .15s ease;
+}
+.captcha-canvas-wrap:hover {
+  border-color: var(--blue);
+}
+
+.captcha-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.captcha-refresh-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.captcha-refresh-btn:hover {
+  background: var(--bg-hover);
+  color: var(--blue);
+  border-color: var(--blue);
+  transform: rotate(45deg);
+}
+.captcha-refresh-btn:active {
+  transform: rotate(180deg) scale(0.95);
+}
+
+.captcha-input-wrap input {
+  letter-spacing: 0.05em;
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+.auth-submit{
+  width:100%; margin-top:8px;
+  background: var(--blue); color:#fff; border:none; border-radius:11px;
+  padding: 12px; font-size:14px; font-weight:700;
+  box-shadow: 0 12px 22px -10px rgba(77,107,254,.65);
+  transition: filter .15s ease, transform .05s ease;
+}
+.auth-submit:hover{ filter: brightness(1.07); }
+.auth-submit:active{ transform: translateY(1px); }
+.auth-submit:disabled{ opacity:.6; cursor:not-allowed; filter:none; }
+
+.auth-alt{
+  text-align:center; margin-top:20px; font-size:12.5px; color: var(--text-2);
+}
+.auth-alt a{ color: var(--blue); font-weight:700; }

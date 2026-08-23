@@ -1,0 +1,461 @@
+/* =========================================================
+   home.css — styles specific to home.html (Dashboard / Overview)
+   Mobile-first: base is a single stacked column; the grid
+   only fans out into multiple columns at wider breakpoints.
+   ========================================================= */
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+.c-tasks,.c-gpa,.c-cal,.c-routine,.c-classes,.c-deadlines,.c-notes,.c-timer{
+  grid-column: span 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.c-timer{ max-width:none; margin:0; }
+
+/* ----- Tasks ----- */
+.c-tasks{ min-height: 380px; }
+#taskList{
+  display:flex; flex-direction:column; gap:6px; flex:1; width:100%;
+  max-height: 270px; overflow-y: auto; padding-right: 4px;
+}
+#taskList::-webkit-scrollbar{ width: 5px; }
+#taskList::-webkit-scrollbar-track{ background: transparent; }
+#taskList::-webkit-scrollbar-thumb{ background: var(--border); border-radius: 4px; }
+#taskList::-webkit-scrollbar-thumb:hover{ background: var(--text-3); }
+
+.task-empty{
+  padding: 28px 12px; text-align: center; color: var(--text-3);
+  font-size: 13px; font-style: italic; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+}
+.task-empty::before{
+  content: '📋'; font-size: 24px; font-style: normal;
+}
+
+.task-row{
+  display:flex; align-items:center; gap:10px;
+  padding: 8px 10px; border-radius:10px;
+  font-size:13.3px; font-weight:500;
+  width: 100%; background: var(--bg-card-alt);
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  position: relative;
+}
+.task-row:hover{
+  background: var(--bg-hover);
+  border-color: var(--border-soft);
+}
+.task-row.done{ opacity: 0.72; }
+
+.task-check{
+  width:20px; height:20px; border-radius:6px;
+  border: 1.8px solid var(--border);
+  flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:11px; font-weight: 800;
+  transition: all .15s ease; cursor: pointer;
+  background: var(--bg-input);
+}
+.task-check:hover{ border-color: var(--blue); }
+.task-row.done .task-check{ background: var(--blue); border-color: var(--blue); }
+
+.task-label{
+  flex: 1; min-width: 0; word-break: break-word; line-height: 1.4;
+  color: var(--text-1); cursor: pointer; user-select: none;
+}
+.task-row.done .task-label{ text-decoration: line-through; color: var(--text-3); }
+
+.task-actions{
+  display: flex; align-items: center; gap: 4px;
+  opacity: 0.85; transition: opacity 0.15s ease;
+  flex-shrink: 0;
+}
+.task-row:hover .task-actions,
+.task-row:focus-within .task-actions{
+  opacity: 1;
+}
+
+@keyframes taskPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    background-color: var(--blue-dim);
+  }
+  60% {
+    background-color: var(--blue-dim);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.task-row.task-just-added {
+  animation: taskPopIn 0.4s ease-out;
+}
+
+.task-btn{
+  background: transparent; border: none;
+  width: 28px; height: 28px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; color: var(--text-2);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  padding: 0;
+}
+.task-btn:hover{
+  background: var(--bg-input);
+  transform: scale(1.12);
+}
+.task-btn.task-edit-btn:hover{ color: var(--blue); }
+.task-btn.task-del-btn:hover{ color: var(--coral, #ff5c5c); }
+
+/* Edit mode */
+.task-edit-form{
+  display: flex; align-items: center; gap: 6px; width: 100%;
+}
+.task-edit-input{
+  flex: 1; min-width: 0; background: var(--bg-input);
+  border: 1.5px solid var(--blue); border-radius: 8px;
+  padding: 6px 10px; font-size: 13px; color: var(--text-1);
+  font-family: inherit; outline: none;
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
+.task-edit-btn-save{
+  background: var(--blue); color: #fff; border: none;
+  border-radius: 8px; padding: 6px 10px; font-size: 12px;
+  font-weight: 700; cursor: pointer; transition: filter 0.15s ease;
+  flex-shrink: 0;
+}
+.task-edit-btn-save:hover{ filter: brightness(1.1); }
+.task-edit-btn-cancel{
+  background: var(--bg-input); color: var(--text-2);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 10px; font-size: 12px; cursor: pointer;
+  flex-shrink: 0; transition: background 0.15s ease, color 0.15s ease;
+}
+.task-edit-btn-cancel:hover{ background: var(--bg-hover); color: var(--text-1); }
+
+/* Add task bar */
+.add-task{
+  margin-top:auto; padding-top:12px; display:flex; gap:8px; width: 100%;
+}
+.add-task input{
+  flex:1; min-width:0; background: var(--bg-input); border:1px solid var(--border);
+  border-radius:10px; padding:9px 12px; font-size:13px; color:var(--text-1);
+  font-family:inherit; outline:none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.add-task input:focus{
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
+.add-task button{
+  background: var(--blue); color:#fff; border:none; border-radius:10px;
+  padding:0 18px; font-size:13px; font-weight:700; flex-shrink:0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  transition: filter 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+.add-task button:hover{
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(77,107,254,0.35);
+}
+.add-task button:active{
+  transform: scale(0.97);
+}
+
+/* ----- GPA ----- */
+.gpa-value{ font-size:13px; font-weight:700; color: var(--blue); background: var(--blue-dim); padding:3px 9px; border-radius:8px; }
+.chart-wrap{ height:170px; margin-top: 4px; width:100%; flex:1; }
+
+/* ----- Routine ----- */
+.card-head-tight{ margin-bottom:2px; }
+.routine-date{ font-size:12px; color: var(--text-2); margin-top:-8px; margin-bottom:14px; }
+.routine-list{ display:flex; flex-direction:column; gap:10px; flex:1; width: 100%; justify-content:space-between; }
+.r-item{
+  background: var(--bg-card-alt);
+  border-radius: 12px;
+  padding: 11px 13px;
+  border-left: 3px solid var(--blue);
+  position:relative;
+  width: 100%;
+  flex:1;
+  display:flex; flex-direction:column; justify-content:center;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.r-item:hover{ background: var(--bg-hover); transform: translateX(2px); }
+.r-item.pink{ border-color: var(--coral); }
+.r-item.amber{ border-color: var(--amber); }
+.r-item.teal{ border-color: var(--teal); }
+.r-tag{ font-size:9.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color: var(--text-3); margin-bottom:3px; }
+.r-time{ font-size:11.5px; font-weight:700; color: var(--text-2); margin-bottom:3px; font-family:var(--mono); }
+.r-title{ font-size:13px; font-weight:700; }
+
+/* ----- Upcoming Deadlines ----- */
+.deadline-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 1;
+  width: 100%;
+}
+.deadline-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg-card-alt);
+  border-radius: 12px;
+  padding: 11px 13px;
+  border-left: 3px solid var(--blue);
+  flex: 1;
+  width: 100%;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.deadline-item:hover{
+  background: var(--bg-hover);
+  transform: translateX(2px);
+}
+.deadline-item:nth-child(2){ border-left-color: var(--coral); }
+.deadline-item:nth-child(3){ border-left-color: var(--amber); }
+.deadline-item:nth-child(4){ border-left-color: var(--teal); }
+
+/* ----- Enrolled classes (Covers 100% of the block) ----- */
+.class-scroll{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+.class-card{
+  width: 100%;
+  background: var(--bg-card-alt);
+  border:1px solid var(--border-soft); border-radius: 16px; padding:16px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.class-card:hover{
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(77,107,254,0.2);
+}
+.class-thumb{
+  height:70px; border-radius:11px; margin-bottom:12px;
+  background: linear-gradient(135deg, var(--blue-dim), var(--blue));
+  display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px;
+  width: 100%;
+}
+.class-card:nth-child(2) .class-thumb{ background: linear-gradient(135deg, var(--coral-dim), var(--coral)); }
+.class-card:nth-child(3) .class-thumb{ background: linear-gradient(135deg, var(--amber-dim), var(--amber)); }
+.class-card:nth-child(4) .class-thumb{ background: linear-gradient(135deg, var(--teal-dim), var(--teal)); }
+.class-name{ font-weight:700; font-size:13.5px; margin-bottom:3px; }
+.class-meta{ font-size:11.5px; color: var(--text-2); }
+.class-progress{ height:5px; border-radius:99px; background: var(--border-soft); margin-top:11px; overflow:hidden; width:100%; }
+.class-progress b{ display:block; height:100%; background: var(--blue); border-radius:99px; }
+.class-card:nth-child(1) .class-progress b{ width:72%; }
+.class-card:nth-child(2) .class-progress b{ width:54%; }
+.class-card:nth-child(3) .class-progress b{ width:38%; }
+.class-card:nth-child(4) .class-progress b{ width:88%; }
+
+/* ----- Focus timer ----- */
+.timer-mode{
+  font-size:11px; font-weight:700; color: var(--blue);
+  background: var(--blue-dim); padding:4px 10px; border-radius:99px;
+}
+.timer-options{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  width: 100%;
+}
+.timer-tabs{
+  display: inline-flex;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 3px;
+  gap: 4px;
+}
+.timer-tab{
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.timer-tab:hover{
+  color: var(--text-1);
+}
+.timer-tab.active{
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(77,107,254,.3);
+}
+.timer-custom-config{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px 14px;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  animation: timerFadeIn 0.2s ease-out;
+}
+@keyframes timerFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.timer-field{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.timer-input-box{
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px 8px;
+  gap: 4px;
+  transition: border-color .15s ease;
+}
+.timer-input-box:focus-within{
+  border-color: var(--blue);
+}
+.timer-input-box input{
+  width: 44px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-1);
+  text-align: center;
+}
+.timer-unit{
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 600;
+}
+.btn-timer-apply{
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: opacity .15s ease;
+}
+.btn-timer-apply:hover{
+  opacity: .9;
+}
+.timer-display{
+  font-family: var(--mono); font-size:38px; font-weight:700;
+  letter-spacing:.02em; margin: 14px 0 10px;
+}
+.timer-dots{ display:flex; justify-content:center; gap:7px; margin-bottom:18px; }
+.timer-dots span{
+  width:8px; height:8px; border-radius:50%;
+  background: var(--border);
+}
+.timer-dots span.filled{ background: var(--blue); }
+.timer-controls{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; width:100%; }
+.btn-timer{
+  height:38px; padding:0 16px; border-radius:12px;
+  background: var(--bg-input); border:1px solid var(--border);
+  color: var(--text-2); font-size:14px; font-weight:700;
+}
+.btn-timer:hover{ background: var(--bg-hover); color: var(--text-1); }
+.btn-timer.primary{
+  background: var(--blue); border-color: var(--blue); color:#fff; min-width:84px;
+}
+
+/* ----- Quick notes ----- */
+.notes-status{ font-size:11px; font-weight:700; color: var(--text-3); }
+.notes-area{
+  flex:1; min-height:140px; width:100%; resize:none;
+  background: var(--bg-input); border:1px solid var(--border);
+  border-radius:12px; padding:12px 14px; font-family:inherit;
+  font-size:13px; line-height:1.6; color: var(--text-1); outline:none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.notes-area:focus{ border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-dim); }
+
+/* ----- Calendar card (c-cal) overrides ----- */
+.c-cal{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.c-cal .cal-grid{
+  flex: 1;
+  align-content: start;
+}
+
+/* ----- Tablet (860px+): 2-column paired rows ----- */
+@media (min-width: 860px){
+  .grid{ grid-template-columns: repeat(12, 1fr); gap: 18px; }
+
+  /* Row 1: Tasks | GPA */
+  .c-tasks   { grid-column: span 6; order: 1; }
+  .c-gpa     { grid-column: span 6; order: 2; }
+
+  /* Row 2: Routine | Calendar */
+  .c-routine { grid-column: span 6; order: 3; }
+  .c-cal     { grid-column: span 6; order: 4; }
+
+  /* Row 3: Enrolled Classes (full width) */
+  .c-classes { grid-column: span 12; order: 5; }
+
+  /* Row 4: Deadlines | Quick Notes */
+  .c-deadlines{ grid-column: span 6; order: 6; }
+  .c-notes   { grid-column: span 6; order: 7; }
+
+  /* Row 5: Focus Timer (full width) */
+  .c-timer   { grid-column: span 12; order: 8; }
+
+  .timer-display{ font-size: 44px; margin: 18px 0 14px; }
+  .class-scroll{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ----- Desktop (1200px+): wider cols, same row structure ----- */
+@media (min-width: 1200px){
+  /* Row 1: Tasks | GPA */
+  .c-tasks   { grid-column: span 6; order: 1; }
+  .c-gpa     { grid-column: span 6; order: 2; }
+
+  /* Row 2: Routine (5 cols) | Calendar (7 cols) – calendar gets more room */
+  .c-routine { grid-column: span 5; order: 3; }
+  .c-cal     { grid-column: span 7; order: 4; }
+
+  /* Row 3: Enrolled Classes (full width) */
+  .c-classes { grid-column: span 12; order: 5; }
+
+  /* Row 4: Deadlines | Quick Notes */
+  .c-deadlines{ grid-column: span 6; order: 6; }
+  .c-notes   { grid-column: span 6; order: 7; }
+
+  /* Row 5: Focus Timer (full width) */
+  .c-timer   { grid-column: span 12; order: 8; text-align: center; align-items: center; }
+
+  .class-scroll{ grid-template-columns: repeat(4, 1fr); }
+}

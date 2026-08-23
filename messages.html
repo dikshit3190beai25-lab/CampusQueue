@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messages — CampusQueue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/topbar-panels.css">
+<link rel="stylesheet" href="css/full-list.css">
+</head>
+<body data-theme="dark" data-full-list="messages">
+<div class="app">
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <aside class="sidebar">
+    <a href="home.html" class="brand" aria-label="CampusQueue home">
+      <div class="brand-mark">CQ</div>
+      <div class="brand-name">CampusQueue</div>
+    </a>
+
+    <div class="nav-group">
+      <div class="nav-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="ico">▤</span>Overview</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Schedule</div>
+      <a href="calendar.html" class="nav-item"><span class="ico">📅</span>Calendar</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Study</div>
+      <a href="subject.html" class="nav-item"><span class="ico">📘</span>Subject</a>
+      <a href="live-class.html" class="nav-item"><span class="ico">🎥</span>Live Class</a>
+      <a href="assignment.html" class="nav-item"><span class="ico">📝</span>Assignment<span class="nav-badge" id="assignBadge">3</span></a>
+      <a href="sources.html" class="nav-item"><span class="ico">🔗</span>Sources</a>
+    </div>
+
+    <div class="nav-group nav-group-bottom">
+      <div class="nav-label">Setting</div>
+      <div class="theme-switch-row" id="themeToggle">
+        <span class="ico">🌓</span><span id="themeLabel">Dark Mode</span>
+        <div class="toggle" id="toggleDot"></div>
+      </div>
+      <a href="contact.html" class="nav-item"><span class="ico">📞</span>Contact Us</a>
+      </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-row-1">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+          <a href="home.html" class="topbar-brand" aria-label="CampusQueue home">
+            <div class="brand-mark">CQ</div>
+            <div class="brand-name">CampusQueue</div>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <div class="nav-actions" id="guestActions">
+            <a href="login.html" class="btn btn-ghost">Log in</a>
+            <a href="signup.html" class="btn btn-primary">Sign up</a>
+          </div>
+          <div class="user-chip initially-hidden" id="userChip">
+            <div class="avatar" id="userAvatar">··</div>
+            <div class="user-meta">
+              <div class="name" id="userName"></div>
+              <div class="role">Student</div>
+            </div>
+            <button class="logout-icon-btn" id="logoutBtn" aria-label="Log out" title="Log out">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-row-2">
+        <div class="search">🔎 <input type="text" placeholder="Search tasks, classes, sources…"></div>
+        <div class="topbar-icons">
+          <div class="icon-menu" id="msgMenu">
+            <button class="icon-btn" id="msgBtn" aria-label="Messages">✉<span class="dot-flag" id="msgDot"></span></button>
+            <div class="dropdown-panel" id="msgPanel">
+              <div class="dropdown-head">
+                <span>Messages</span>
+                <button class="dropdown-mark-read" data-mark="messages">Mark all read</button>
+              </div>
+              <div class="dropdown-list" id="msgList"></div>
+              <div class="dropdown-foot"><a href="messages.html">View all messages</a></div>
+            </div>
+          </div>
+          <div class="icon-menu" id="notifMenu">
+            <button class="icon-btn" id="notifBtn" aria-label="Notifications">🔔<span class="dot-flag" id="notifDot"></span></button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">
+                <span>Notifications</span>
+                <button class="dropdown-mark-read" data-mark="notifications">Mark all read</button>
+              </div>
+              <div class="dropdown-list" id="notifList"></div>
+              <div class="dropdown-foot"><a href="notifications.html">View all notifications</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <div class="page-title">Messages</div>
+          <div class="page-sub">Direct messages from instructors, study groups, and support.</div>
+        </div>
+        <div class="page-actions">
+          <button class="dropdown-mark-read" id="markAllReadBtn" style="font-size:12.5px;">Mark all read</button>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" data-filter="all">All</button>
+        <button class="tab-btn" data-filter="unread">Unread</button>
+      </div>
+
+      <div class="card">
+        <div id="fullList" class="full-list"></div>
+      </div>
+
+      <footer class="app-footer">
+        <div class="footer-brand">
+          <div class="brand-mark">CQ</div>
+          <div class="brand-name">CampusQueue</div>
+        </div>
+        <p class="footer-tagline">Student Task Management System</p>
+        <div class="footer-meta">
+          <span><strong>Team No:</strong> 1</span>
+        </div>
+        <div class="footer-links">
+          <a href="home.html">Overview</a> ·
+          <a href="calendar.html">Calendar</a> ·
+          <a href="subject.html">Subject</a> ·
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-copy">© 2026 CampusQueue. All rights reserved.</div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script src="js/mobile-nav.js"></script>
+<script src="js/common.js"></script>
+<script src="js/notifications-data.js"></script>
+<script src="js/topbar-panels.js"></script>
+<script src="js/full-list.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>

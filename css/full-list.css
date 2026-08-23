@@ -1,0 +1,46 @@
+/* =========================================================
+   full-list.css — shared styles for notifications.html
+   and messages.html (the "View all" destinations).
+   ========================================================= */
+
+.full-list{ display:flex; flex-direction:column; }
+
+.full-list-item{
+  display:flex; align-items:flex-start; gap:14px;
+  padding: 16px 6px;
+  border-bottom:1px solid var(--border-soft);
+  cursor:pointer;
+  transition: background .12s ease;
+  border-radius:12px;
+}
+.full-list-item:hover{ background: var(--bg-hover); }
+.full-list-item:last-child{ border-bottom:none; }
+
+.full-list-icon{
+  width:42px; height:42px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px;
+  background: var(--blue-dim); color: var(--blue);
+}
+.full-list-item.type-msg .full-list-icon{ background: var(--teal-dim); color: var(--teal); }
+.full-list-item.type-deadline .full-list-icon{ background: var(--coral-dim); color: var(--coral); }
+.full-list-item.type-class .full-list-icon{ background: var(--amber-dim); color: var(--amber); }
+
+.full-list-body{ flex:1; min-width:0; }
+.full-list-title-row{ display:flex; align-items:center; gap:8px; }
+.full-list-title{ font-size:14px; font-weight:700; color: var(--text-1); }
+.full-list-item.read .full-list-title{ color: var(--text-2); font-weight:600; }
+.full-list-text{ font-size:12.8px; color: var(--text-2); line-height:1.5; margin-top:3px; }
+.full-list-time{ font-size:11px; color: var(--text-3); margin-top:6px; font-family: var(--mono); }
+
+.full-list-unread-dot{
+  width:8px; height:8px; border-radius:50%; background: var(--blue); flex-shrink:0; margin-top:6px;
+}
+.full-list-item.read .full-list-unread-dot{ background: transparent; }
+
+.full-list-empty{
+  padding: 60px 16px; text-align:center;
+  color: var(--text-3); font-size:13px; font-weight:600;
+}
+
+.page-actions{ display:flex; align-items:center; gap:10px; }

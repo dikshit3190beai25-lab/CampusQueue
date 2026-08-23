@@ -1,0 +1,89 @@
+/* =========================================================
+   index.css — styles specific to index.html (splash screen)
+   ========================================================= */
+
+html, body{ height:100%; }
+body{
+  margin:0;
+  background: var(--bg-page);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(77,107,254,.16), transparent 45%),
+    radial-gradient(circle at 82% 85%, rgba(47,212,165,.10), transparent 45%),
+    var(--bg-page);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.splash-logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+  margin-bottom:38px;
+  animation: fadeUp .6s ease both;
+}
+.splash-mark{
+  width:56px; height:56px; border-radius:16px;
+  background: linear-gradient(145deg, var(--blue), #7b8fff);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:800; font-size:22px;
+  box-shadow: 0 16px 32px -12px rgba(77,107,254,.65);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+.splash-name{
+  font-weight:800; font-size:21px; letter-spacing:-.02em; color: var(--text-1);
+}
+.splash-tagline{
+  font-size:12.5px; color: var(--text-2); margin-top:-6px;
+}
+
+.container{
+  width: 260px;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+}
+.square{
+  width: 0%;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--blue), #7b8fff);
+  position: relative;
+  animation: mymoves 3s linear forwards;
+}
+@keyframes mymoves {
+  0%{width: 0%;}
+  25%{width: 25%;}
+  50%{width: 50%;}
+  75%{width: 75%;}
+  100%{width:100%;}
+}
+
+p{
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  margin-top: 16px;
+  animation: fadeFlicker 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%, 100%{ transform: scale(1); box-shadow: 0 16px 32px -12px rgba(77,107,254,.65); }
+  50%{ transform: scale(1.06); box-shadow: 0 20px 38px -12px rgba(77,107,254,.85); }
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(8px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+@keyframes fadeFlicker{
+  0%, 100%{ opacity:.55; }
+  50%{ opacity:1; }
+}

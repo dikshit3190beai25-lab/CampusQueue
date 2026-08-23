@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusQueue — Student Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/topbar-panels.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body data-theme="dark">
+<div class="app">
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <aside class="sidebar">
+    <a href="home.html" class="brand" aria-label="CampusQueue home">
+      <div class="brand-mark">CQ</div>
+      <div class="brand-name">CampusQueue</div>
+    </a>
+
+    <div class="nav-group">
+      <div class="nav-label">Main</div>
+      <a href="home.html" class="nav-item active"><span class="ico">▤</span>Overview</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Schedule</div>
+      <a href="calendar.html" class="nav-item"><span class="ico">📅</span>Calendar</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Study</div>
+      <a href="subject.html" class="nav-item"><span class="ico">📘</span>Subject</a>
+      <a href="live-class.html" class="nav-item"><span class="ico">🎥</span>Live Class</a>
+      <a href="assignment.html" class="nav-item"><span class="ico">📝</span>Assignment<span class="nav-badge" id="assignBadge">3</span></a>
+      <a href="sources.html" class="nav-item"><span class="ico">🔗</span>Sources</a>
+    </div>
+
+    <div class="nav-group nav-group-bottom">
+      <div class="nav-label">Setting</div>
+      <div class="theme-switch-row" id="themeToggle">
+        <span class="ico">🌓</span><span id="themeLabel">Dark Mode</span>
+        <div class="toggle" id="toggleDot"></div>
+      </div>
+      <a href="contact.html" class="nav-item"><span class="ico">📞</span>Contact Us</a>
+      </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-row-1">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+          <a href="home.html" class="topbar-brand" aria-label="CampusQueue home">
+            <div class="brand-mark">CQ</div>
+            <div class="brand-name">CampusQueue</div>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <div class="nav-actions" id="guestActions">
+            <a href="login.html" class="btn btn-ghost">Log in</a>
+            <a href="signup.html" class="btn btn-primary">Sign up</a>
+          </div>
+          <div class="user-chip initially-hidden" id="userChip">
+            <div class="avatar" id="userAvatar">··</div>
+            <div class="user-meta">
+              <div class="name" id="userName"></div>
+              <div class="role">Student</div>
+            </div>
+            <button class="logout-icon-btn" id="logoutBtn" aria-label="Log out" title="Log out">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-row-2">
+        <div class="search">🔎 <input type="text" placeholder="Search tasks, classes, sources…"></div>
+        <div class="topbar-icons">
+          <div class="icon-menu" id="msgMenu">
+            <button class="icon-btn" id="msgBtn" aria-label="Messages">✉<span class="dot-flag" id="msgDot"></span></button>
+            <div class="dropdown-panel" id="msgPanel">
+              <div class="dropdown-head">
+                <span>Messages</span>
+                <button class="dropdown-mark-read" data-mark="messages">Mark all read</button>
+              </div>
+              <div class="dropdown-list" id="msgList"></div>
+              <div class="dropdown-foot"><a href="messages.html">View all messages</a></div>
+            </div>
+          </div>
+          <div class="icon-menu" id="notifMenu">
+            <button class="icon-btn" id="notifBtn" aria-label="Notifications">🔔<span class="dot-flag" id="notifDot"></span></button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">
+                <span>Notifications</span>
+                <button class="dropdown-mark-read" data-mark="notifications">Mark all read</button>
+              </div>
+              <div class="dropdown-list" id="notifList"></div>
+              <div class="dropdown-foot"><a href="notifications.html">View all notifications</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="grid">
+
+        <!-- Row 1 Card 1: Tasks Card -->
+        <div class="card c-tasks">
+          <div class="card-head">
+            <div>
+              <div class="card-eyebrow">Schedule</div>
+              <div class="card-title">Tasks</div>
+            </div>
+          </div>
+          <div id="taskList"></div>
+          <div class="add-task">
+            <input id="newTaskInput" type="text" placeholder="Add a new task…" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();if(typeof addTask==='function')addTask();}">
+            <button id="addTaskBtn" type="button" onclick="if(typeof addTask==='function')addTask();">Add</button>
+          </div>
+        </div>
+
+        <!-- Row 1 Card 2: Grade Point Average Card -->
+        <div class="card c-gpa">
+          <div class="card-head">
+            <div>
+              <div class="card-eyebrow">Subject</div>
+              <div class="card-title">Grade Point Average</div>
+            </div>
+            <div class="gpa-value">GP 4.00</div>
+          </div>
+          <div class="chart-wrap"><canvas id="gpaChart"></canvas></div>
+        </div>
+
+        <!-- Row 2 Card 1: Routine Card -->
+        <div class="card c-routine">
+          <div class="card-head card-head-tight">
+            <div>
+              <div class="card-eyebrow">Calendar</div>
+              <div class="card-title">Routine</div>
+            </div>
+          </div>
+          <div class="routine-date" id="routineDate">6 August 2026</div>
+          <div class="routine-list">
+            <div class="r-item">
+              <div class="r-tag">Class</div>
+              <div class="r-time">8 AM – 10 AM</div>
+              <div class="r-title">Introduction to Web Design</div>
+            </div>
+            <div class="r-item pink">
+              <div class="r-tag">Class</div>
+              <div class="r-time">12 AM – 2 PM</div>
+              <div class="r-title">Responsive Design</div>
+            </div>
+            <div class="r-item amber">
+              <div class="r-tag">Assignment</div>
+              <div class="r-time">Deadline: 2 PM</div>
+              <div class="r-title">Build a Simple Website Design</div>
+            </div>
+            <div class="r-item teal">
+              <div class="r-tag">Class</div>
+              <div class="r-time">4 PM – 6 PM</div>
+              <div class="r-title">UI Prototyping Workshop</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2 Card 2: Calendar Card (Photo-styled Modern Calendar) -->
+        <div class="card c-cal">
+          <div class="cal-card-head">
+            <button id="calPrev" class="cal-arrow-btn" aria-label="Previous month">‹</button>
+            <div class="cal-header-title" id="calMonthLabel">August 2026</div>
+            <button id="calNext" class="cal-arrow-btn" aria-label="Next month">›</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-footer">
+            <button id="calToday" class="cal-today-quick" type="button" title="Jump to Today">Today</button>
+            <button id="calDoneBtn" class="cal-done-btn" type="button">Done</button>
+          </div>
+        </div>
+
+        <!-- Row 3: Enrolled Classes Card -->
+        <div class="card c-classes">
+          <div class="card-head">
+            <div>
+              <div class="card-eyebrow">Subject</div>
+              <div class="card-title">Enrolled Classes</div>
+            </div>
+            <a class="link-see-all" href="subject.html">See All</a>
+          </div>
+          <div class="class-scroll">
+            <div class="class-card">
+              <div class="class-thumb">🖥</div>
+              <div class="class-name">Introduction to Web Design</div>
+              <div class="class-meta">Mon · Wed · 8–10 AM</div>
+              <div class="class-progress"><b></b></div>
+            </div>
+            <div class="class-card">
+              <div class="class-thumb">📱</div>
+              <div class="class-name">Responsive Design</div>
+              <div class="class-meta">Tue · Thu · 12–2 PM</div>
+              <div class="class-progress"><b></b></div>
+            </div>
+            <div class="class-card">
+              <div class="class-thumb">🎬</div>
+              <div class="class-name">Animation &amp; Multimedia</div>
+              <div class="class-meta">Wed · Fri · 5–7 PM</div>
+              <div class="class-progress"><b></b></div>
+            </div>
+            <div class="class-card">
+              <div class="class-thumb">🧩</div>
+              <div class="class-name">UI Prototyping Workshop</div>
+              <div class="class-meta">Thu · 4–6 PM</div>
+              <div class="class-progress"><b></b></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4 Card 1: Upcoming Deadlines Card -->
+        <div class="card c-deadlines">
+          <div class="card-head">
+            <div>
+              <div class="card-eyebrow">Assignment</div>
+              <div class="card-title">Upcoming Deadlines</div>
+            </div>
+          </div>
+          <div id="deadlineList" class="deadline-list"></div>
+        </div>
+
+        <!-- Row 4 Card 2: Quick Notes Card -->
+        <div class="card c-notes">
+          <div class="card-head">
+            <div>
+              <div class="card-eyebrow">Study</div>
+              <div class="card-title">Quick Notes</div>
+            </div>
+            <div class="notes-status" id="notesStatus">Saved</div>
+          </div>
+          <textarea id="notesArea" class="notes-area" placeholder="Jot down a reminder, idea, or something from class…"></textarea>
+        </div>
+
+        <!-- Row 5: Focus Timer Card -->
+        <div class="card c-timer">
+          <div class="card-head">
+            <div>
+              <div class="card-eyebrow">Study</div>
+              <div class="card-title">Focus Timer</div>
+            </div>
+            <div class="timer-mode" id="timerMode">Focus</div>
+          </div>
+
+          <!-- Timer Mode Options: Default vs Custom -->
+          <div class="timer-options">
+            <div class="timer-tabs">
+              <button type="button" class="timer-tab active" id="defaultTimerBtn">Default (25m)</button>
+              <button type="button" class="timer-tab" id="customTimerBtn">Custom</button>
+            </div>
+            <div class="timer-custom-config" id="timerCustomConfig" style="display: none;">
+              <div class="timer-field">
+                <label for="customFocusInput">Focus</label>
+                <div class="timer-input-box">
+                  <input type="number" id="customFocusInput" min="1" max="180" value="25" aria-label="Custom focus time in minutes" />
+                  <span class="timer-unit">min</span>
+                </div>
+              </div>
+              <div class="timer-field">
+                <label for="customBreakInput">Break</label>
+                <div class="timer-input-box">
+                  <input type="number" id="customBreakInput" min="1" max="60" value="5" aria-label="Custom break time in minutes" />
+                  <span class="timer-unit">min</span>
+                </div>
+              </div>
+              <button type="button" class="btn-timer-apply" id="applyCustomBtn">Set</button>
+            </div>
+          </div>
+
+          <div class="timer-display" id="timerDisplay">25:00</div>
+          <div class="timer-dots" id="timerDots"></div>
+          <div class="timer-controls">
+            <button class="btn-timer" id="timerReset" title="Reset">↺</button>
+            <button class="btn-timer primary" id="timerToggle">Start</button>
+            <button class="btn-timer" id="timerSkip" title="Skip">⏭</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer matching wireframe spec -->
+      <footer class="app-footer">
+        <div class="footer-brand">
+          <div class="brand-mark">CQ</div>
+          <div class="brand-name">CampusQueue</div>
+        </div>
+        <p class="footer-tagline">Student Task Management System</p>
+        <div class="footer-meta">
+          <span><strong>Team No:</strong> 1</span>
+        </div>
+        <div class="footer-links">
+          <a href="home.html">Overview</a> ·
+          <a href="calendar.html">Calendar</a> ·
+          <a href="subject.html">Subject</a> ·
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-copy">© 2026 CampusQueue. All rights reserved.</div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/notifications-data.js"></script>
+<script src="js/topbar-panels.js"></script>
+<script src="js/mobile-nav.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>

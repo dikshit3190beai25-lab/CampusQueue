@@ -1,0 +1,17 @@
+/* =========================================================
+   calendar.css — styles specific to calendar.html
+   Mobile-first: stacked single column by default; the
+   two-column layout (calendar + events panel) only kicks
+   in once there's room for it.
+   ========================================================= */
+
+.big-cal-layout{ display:grid; grid-template-columns: 1fr; gap:16px; align-items:start; }
+.big-cal-card .cal-grid{ gap:6px; margin: 8px 0 12px; }
+.big-cal-card .cal-day{ font-size:14px; border-radius:10px; min-height: 36px; }
+.events-panel-title{ font-size:14px; font-weight:800; margin-bottom:14px; }
+
+@media (min-width: 900px){
+  .big-cal-layout{ grid-template-columns: 1fr 320px; gap:18px; }
+  .big-cal-card .cal-grid{ gap:8px; }
+  .big-cal-card .cal-day{ font-size:14.5px; border-radius:10px; min-height: 40px; }
+}

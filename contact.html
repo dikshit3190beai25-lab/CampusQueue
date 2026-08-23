@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — CampusQueue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/topbar-panels.css">
+<link rel="stylesheet" href="css/contact.css">
+</head>
+<body data-theme="dark">
+<div class="app">
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <aside class="sidebar">
+    <a href="home.html" class="brand" aria-label="CampusQueue home">
+      <div class="brand-mark">CQ</div>
+      <div class="brand-name">CampusQueue</div>
+    </a>
+
+    <div class="nav-group">
+      <div class="nav-label">Main</div>
+      <a href="home.html" class="nav-item"><span class="ico">▤</span>Overview</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Schedule</div>
+      <a href="calendar.html" class="nav-item"><span class="ico">📅</span>Calendar</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Study</div>
+      <a href="subject.html" class="nav-item"><span class="ico">📘</span>Subject</a>
+      <a href="live-class.html" class="nav-item"><span class="ico">🎥</span>Live Class</a>
+      <a href="assignment.html" class="nav-item"><span class="ico">📝</span>Assignment<span class="nav-badge" id="assignBadge">3</span></a>
+      <a href="sources.html" class="nav-item"><span class="ico">🔗</span>Sources</a>
+    </div>
+
+    <div class="nav-group nav-group-bottom">
+      <div class="nav-label">Setting</div>
+      <div class="theme-switch-row" id="themeToggle">
+        <span class="ico">🌓</span><span id="themeLabel">Dark Mode</span>
+        <div class="toggle" id="toggleDot"></div>
+      </div>
+      <a href="contact.html" class="nav-item active"><span class="ico">📞</span>Contact Us</a>
+      </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-row-1">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+          <a href="home.html" class="topbar-brand" aria-label="CampusQueue home">
+            <div class="brand-mark">CQ</div>
+            <div class="brand-name">CampusQueue</div>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <div class="nav-actions" id="guestActions">
+            <a href="login.html" class="btn btn-ghost">Log in</a>
+            <a href="signup.html" class="btn btn-primary">Sign up</a>
+          </div>
+          <div class="user-chip initially-hidden" id="userChip">
+            <div class="avatar" id="userAvatar">··</div>
+            <div class="user-meta">
+              <div class="name" id="userName"></div>
+              <div class="role">Student</div>
+            </div>
+            <button class="logout-icon-btn" id="logoutBtn" aria-label="Log out" title="Log out">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-row-2">
+        <div class="search">🔎 <input type="text" placeholder="Search tasks, classes, sources…"></div>
+        <div class="topbar-icons">
+          <div class="icon-menu" id="msgMenu">
+            <button class="icon-btn" id="msgBtn" aria-label="Messages">✉<span class="dot-flag" id="msgDot"></span></button>
+            <div class="dropdown-panel" id="msgPanel">
+              <div class="dropdown-head">
+                <span>Messages</span>
+                <button class="dropdown-mark-read" data-mark="messages">Mark all read</button>
+              </div>
+              <div class="dropdown-list" id="msgList"></div>
+              <div class="dropdown-foot"><a href="messages.html">View all messages</a></div>
+            </div>
+          </div>
+          <div class="icon-menu" id="notifMenu">
+            <button class="icon-btn" id="notifBtn" aria-label="Notifications">🔔<span class="dot-flag" id="notifDot"></span></button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">
+                <span>Notifications</span>
+                <button class="dropdown-mark-read" data-mark="notifications">Mark all read</button>
+              </div>
+              <div class="dropdown-list" id="notifList"></div>
+              <div class="dropdown-foot"><a href="notifications.html">View all notifications</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <div class="page-title">Contact Us</div>
+          <div class="page-sub">Leave your details and we'll get back to you.</div>
+        </div>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-info-card">
+          <div class="contact-info-title">Let's talk</div>
+          <div class="contact-info-sub">Questions about your account, a class, or a bug you've spotted? Fill out the form and our team will reach out.</div>
+
+          <div class="contact-info-list">
+            <div class="contact-row">
+              <div class="icon-btn">✉</div>
+              <div class="contact-row-content">
+                <div class="contact-row-title">Email</div>
+                <div class="contact-row-sub">support@campusqueue.app</div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="icon-btn">📞</div>
+              <div class="contact-row-content">
+                <div class="contact-row-title">Phone</div>
+                <div class="contact-row-sub">+1 (555) 019-2834</div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="icon-btn">📍</div>
+              <div class="contact-row-content">
+                <div class="contact-row-title">Office</div>
+                <div class="contact-row-sub">Student Union, Room 304</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <div class="form-error" id="formError"></div>
+
+          <form id="contactForm" novalidate>
+            <div class="field">
+              <label for="cName">Full Name</label>
+              <input type="text" id="cName" name="name" placeholder="Alex Morgan" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="cPhone">Phone Number</label>
+              <input type="tel" id="cPhone" name="phone" placeholder="+1 555-019-2834" autocomplete="tel" required>
+            </div>
+            <div class="field">
+              <label for="cEmail">Email</label>
+              <input type="email" id="cEmail" name="email" placeholder="you@campus.edu" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="cMessage">Message <span class="optional-label">(optional)</span></label>
+              <textarea id="cMessage" name="message" rows="4" class="contact-message" placeholder="Tell us what this is about…"></textarea>
+            </div>
+            <button type="submit" class="auth-submit" id="submitBtn">Send message</button>
+          </form>
+
+          <div class="contact-success" id="contactSuccess">
+            <div class="icn">✓</div>
+            <h3>Thanks — we've got it!</h3>
+            <p>We'll contact you soon at the phone number or email you gave us.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="app-footer">
+        <div class="footer-brand">
+          <div class="brand-mark">CQ</div>
+          <div class="brand-name">CampusQueue</div>
+        </div>
+        <p class="footer-tagline">Student Task Management System</p>
+        <div class="footer-meta">
+          <span><strong>Team No:</strong> 1</span>
+        </div>
+        <div class="footer-links">
+          <a href="home.html">Overview</a> ·
+          <a href="calendar.html">Calendar</a> ·
+          <a href="subject.html">Subject</a> ·
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-copy">© 2026 CampusQueue. All rights reserved.</div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script src="js/mobile-nav.js"></script>
+<script src="js/common.js"></script>
+<script src="js/notifications-data.js"></script>
+<script src="js/topbar-panels.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>
