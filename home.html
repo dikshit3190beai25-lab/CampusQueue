@@ -116,6 +116,15 @@
               <div class="card-eyebrow">Schedule</div>
               <div class="card-title">Tasks</div>
             </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="task-count-pill" id="taskCountPill" style="font-size:11px; font-weight:700; color:var(--text-2); background:var(--bg-input); padding:4px 9px; border-radius:99px; border:1px solid var(--border);">0/0 done</div>
+              <button type="button" class="cq-btn cq-btn-sm cq-btn-ghost" id="clearCompletedTasksBtn" title="Clear completed tasks">Clear</button>
+            </div>
+          </div>
+          <div class="tab-row" style="margin-bottom:10px; gap:6px;">
+            <button type="button" class="tab-btn active task-filter-btn" data-task-filter="all">All</button>
+            <button type="button" class="tab-btn task-filter-btn" data-task-filter="pending">Active</button>
+            <button type="button" class="tab-btn task-filter-btn" data-task-filter="done">Completed</button>
           </div>
           <div id="taskList"></div>
           <div class="add-task">
@@ -131,7 +140,10 @@
               <div class="card-eyebrow">Subject</div>
               <div class="card-title">Grade Point Average</div>
             </div>
-            <div class="gpa-value">GP 4.00</div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="gpa-value" id="currentGpaVal">GP 4.00</div>
+              <button type="button" class="cq-btn cq-btn-sm cq-btn-secondary" id="gpaBreakdownBtn" title="View Grade Breakdown & Calculator">📊 Breakdown</button>
+            </div>
           </div>
           <div class="chart-wrap"><canvas id="gpaChart"></canvas></div>
         </div>
@@ -143,30 +155,10 @@
               <div class="card-eyebrow">Calendar</div>
               <div class="card-title">Routine</div>
             </div>
+            <button type="button" class="cq-btn cq-btn-sm cq-btn-secondary" id="addRoutineBtn">+ Add Block</button>
           </div>
           <div class="routine-date" id="routineDate">6 August 2026</div>
-          <div class="routine-list">
-            <div class="r-item">
-              <div class="r-tag">Class</div>
-              <div class="r-time">8 AM – 10 AM</div>
-              <div class="r-title">Introduction to Web Design</div>
-            </div>
-            <div class="r-item pink">
-              <div class="r-tag">Class</div>
-              <div class="r-time">12 AM – 2 PM</div>
-              <div class="r-title">Responsive Design</div>
-            </div>
-            <div class="r-item amber">
-              <div class="r-tag">Assignment</div>
-              <div class="r-time">Deadline: 2 PM</div>
-              <div class="r-title">Build a Simple Website Design</div>
-            </div>
-            <div class="r-item teal">
-              <div class="r-tag">Class</div>
-              <div class="r-time">4 PM – 6 PM</div>
-              <div class="r-title">UI Prototyping Workshop</div>
-            </div>
-          </div>
+          <div class="routine-list" id="routineList"></div>
         </div>
 
         <!-- Row 2 Card 2: Calendar Card (Photo-styled Modern Calendar) -->
@@ -179,7 +171,8 @@
           <div class="cal-grid" id="calGrid"></div>
           <div class="cal-footer">
             <button id="calToday" class="cal-today-quick" type="button" title="Jump to Today">Today</button>
-            <button id="calDoneBtn" class="cal-done-btn" type="button">Done</button>
+            <button id="calAddEventBtn" class="cq-btn cq-btn-sm cq-btn-secondary" type="button" title="Schedule Event">+ Event</button>
+            <button id="calDoneBtn" class="cal-done-btn" type="button">Select</button>
           </div>
         </div>
 
@@ -192,30 +185,34 @@
             </div>
             <a class="link-see-all" href="subject.html">See All</a>
           </div>
-          <div class="class-scroll">
-            <div class="class-card">
+          <div class="class-scroll" id="classScroll">
+            <div class="class-card" data-class="Introduction to Web Design" style="cursor:pointer;">
               <div class="class-thumb">🖥</div>
               <div class="class-name">Introduction to Web Design</div>
               <div class="class-meta">Mon · Wed · 8–10 AM</div>
-              <div class="class-progress"><b></b></div>
+              <div class="class-progress-row" style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-2); margin-top:6px; margin-bottom:4px;"><span>Progress</span><span>72%</span></div>
+              <div class="class-progress"><b style="width:72%;"></b></div>
             </div>
-            <div class="class-card">
+            <div class="class-card" data-class="Responsive Design" style="cursor:pointer;">
               <div class="class-thumb">📱</div>
               <div class="class-name">Responsive Design</div>
               <div class="class-meta">Tue · Thu · 12–2 PM</div>
-              <div class="class-progress"><b></b></div>
+              <div class="class-progress-row" style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-2); margin-top:6px; margin-bottom:4px;"><span>Progress</span><span>54%</span></div>
+              <div class="class-progress"><b style="width:54%;"></b></div>
             </div>
-            <div class="class-card">
+            <div class="class-card" data-class="Animation &amp; Multimedia" style="cursor:pointer;">
               <div class="class-thumb">🎬</div>
               <div class="class-name">Animation &amp; Multimedia</div>
               <div class="class-meta">Wed · Fri · 5–7 PM</div>
-              <div class="class-progress"><b></b></div>
+              <div class="class-progress-row" style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-2); margin-top:6px; margin-bottom:4px;"><span>Progress</span><span>38%</span></div>
+              <div class="class-progress"><b style="width:38%;"></b></div>
             </div>
-            <div class="class-card">
+            <div class="class-card" data-class="UI Prototyping Workshop" style="cursor:pointer;">
               <div class="class-thumb">🧩</div>
               <div class="class-name">UI Prototyping Workshop</div>
               <div class="class-meta">Thu · 4–6 PM</div>
-              <div class="class-progress"><b></b></div>
+              <div class="class-progress-row" style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-2); margin-top:6px; margin-bottom:4px;"><span>Progress</span><span>88%</span></div>
+              <div class="class-progress"><b style="width:88%;"></b></div>
             </div>
           </div>
         </div>
@@ -227,6 +224,7 @@
               <div class="card-eyebrow">Assignment</div>
               <div class="card-title">Upcoming Deadlines</div>
             </div>
+            <button type="button" class="cq-btn cq-btn-sm cq-btn-secondary" id="addDeadlineBtn">+ New</button>
           </div>
           <div id="deadlineList" class="deadline-list"></div>
         </div>
@@ -238,9 +236,15 @@
               <div class="card-eyebrow">Study</div>
               <div class="card-title">Quick Notes</div>
             </div>
-            <div class="notes-status" id="notesStatus">Saved</div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <div class="notes-status" id="notesStatus">Saved</div>
+              <button type="button" class="cq-btn cq-btn-sm cq-btn-ghost" id="noteTimeBtn" title="Insert Timestamp">⏰</button>
+              <button type="button" class="cq-btn cq-btn-sm cq-btn-ghost" id="noteCopyBtn" title="Copy Notes">📋</button>
+              <button type="button" class="cq-btn cq-btn-sm cq-btn-ghost" id="noteClearBtn" title="Clear Notes">🗑️</button>
+            </div>
           </div>
           <textarea id="notesArea" class="notes-area" placeholder="Jot down a reminder, idea, or something from class…"></textarea>
+          <div id="notesMeta" style="font-size:11px; color:var(--text-3); text-align:right; margin-top:6px;">0 words · 0 chars</div>
         </div>
 
         <!-- Row 5: Focus Timer Card -->
@@ -284,6 +288,10 @@
             <button class="btn-timer" id="timerReset" title="Reset">↺</button>
             <button class="btn-timer primary" id="timerToggle">Start</button>
             <button class="btn-timer" id="timerSkip" title="Skip">⏭</button>
+          </div>
+          <div class="timer-stat-row" style="display:flex; align-items:center; justify-content:space-between; font-size:11.5px; color:var(--text-2); margin-top:14px; padding-top:10px; border-top:1px solid var(--border-soft);">
+            <span>Total Focus Today: <strong id="totalFocusMinutes" style="color:var(--blue);">0 min</strong></span>
+            <button type="button" class="cq-btn cq-btn-sm cq-btn-ghost" id="resetTimerStatsBtn" style="font-size:10.5px;">Reset count</button>
           </div>
         </div>
 

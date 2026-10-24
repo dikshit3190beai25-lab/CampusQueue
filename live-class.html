@@ -111,6 +111,22 @@
           <div class="page-title">Live Class</div>
           <div class="page-sub">Join sessions happening now, or see what's coming up.</div>
         </div>
+        <div class="page-actions" style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="cq-btn cq-btn-secondary" id="virtualWhiteboardBtn" title="Open collaborative sketch canvas">🎨 Quick Whiteboard</button>
+          <button type="button" class="cq-btn cq-btn-primary" id="scheduleSessionBtn">+ Host Study Room</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+        <div class="tab-row" id="liveTabRow">
+          <button type="button" class="tab-btn active live-tab" data-filter="all">All Sessions</button>
+          <button type="button" class="tab-btn live-tab" data-filter="live">🔴 Live Now</button>
+          <button type="button" class="tab-btn live-tab" data-filter="upcoming">Upcoming</button>
+          <button type="button" class="tab-btn live-tab" data-filter="ended">Recordings</button>
+        </div>
+        <div style="font-size:12px; color:var(--text-2);">
+          Interactive virtual lectures &amp; study groups
+        </div>
       </div>
 
       <div class="live-list" id="liveList"></div>

@@ -7,13 +7,20 @@
   display:flex; align-items:center; gap:16px; flex-wrap:wrap;
   background: var(--bg-card); border:1px solid var(--border-soft);
   border-radius: var(--radius-lg); padding:16px 20px; box-shadow: var(--shadow);
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.assignment-card:hover{
+  border-color: var(--border);
+  transform: translateY(-1px);
 }
 .assignment-check{
   width:22px; height:22px; border-radius:7px; flex-shrink:0;
   border:1.6px solid var(--border);
   display:flex; align-items:center; justify-content:center;
   color:#fff; font-size:12px; cursor:pointer; transition: all .15s ease;
+  background: var(--bg-input);
 }
+.assignment-check:hover{ border-color: var(--blue); }
 .assignment-card.done .assignment-check{ background: var(--blue); border-color: var(--blue); }
 .assignment-body{ flex:1; min-width:180px; }
 .assignment-title{ font-size:14px; font-weight:700; margin-bottom:4px; }

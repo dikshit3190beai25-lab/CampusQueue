@@ -111,12 +111,46 @@
           <div class="page-title">Assignments</div>
           <div class="page-sub">Track what's due and check things off as you finish.</div>
         </div>
+        <div class="page-actions" style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="cq-btn cq-btn-secondary" id="clearCompletedAssignBtn">Clear Completed</button>
+          <button type="button" class="cq-btn cq-btn-primary" id="addAssignmentBtn">+ Add Assignment</button>
+        </div>
       </div>
 
-      <div class="tab-row" id="tabRow">
-        <button class="tab-btn active" data-filter="all">All</button>
-        <button class="tab-btn" data-filter="pending">Pending</button>
-        <button class="tab-btn" data-filter="done">Completed</button>
+      <div class="stats-overview-bar" id="assignStatsBar">
+        <div class="stat-box">
+          <div class="stat-box-num blue" id="statTotalAssign">0</div>
+          <div class="stat-box-label">Total Assigned</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num amber" id="statPendingAssign">0</div>
+          <div class="stat-box-label">Pending Deadlines</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num teal" id="statCompletedAssign">0</div>
+          <div class="stat-box-label">Completed</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num" id="statRateAssign" style="color:var(--text-1);">0%</div>
+          <div class="stat-box-label">Completion Rate</div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+        <div class="tab-row" id="tabRow">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="pending">Pending</button>
+          <button class="tab-btn" data-filter="done">Completed</button>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <select id="subjectFilterSelect" class="cq-select" style="width:auto; padding:6px 12px; font-size:12px;">
+            <option value="all">All Subjects</option>
+            <option value="Web Design">Web Design</option>
+            <option value="Animation & Multimedia">Animation & Multimedia</option>
+            <option value="Responsive Design">Responsive Design</option>
+            <option value="UI Prototyping">UI Prototyping</option>
+          </select>
+        </div>
       </div>
 
       <div class="assignment-list" id="assignmentList"></div>

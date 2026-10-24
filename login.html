@@ -61,7 +61,16 @@
         <div class="field-hint">Enter the characters shown above to verify you're not a robot.</div>
       </div>
 
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-size:12.5px;">
+        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-2);">
+          <input type="checkbox" id="rememberMe" style="accent-color:var(--blue);" checked>
+          <span>Remember me</span>
+        </label>
+        <button type="button" id="forgotPasswordBtn" style="background:none; border:none; color:var(--blue); font-size:12px; font-weight:700; cursor:pointer;">Forgot password?</button>
+      </div>
+
       <button type="submit" class="auth-submit" id="submitBtn">Log in</button>
+      <button type="button" class="cq-btn cq-btn-secondary" id="demoLoginBtn" style="width:100%; margin-top:10px; padding:11px;">⚡ Quick Demo Login (Alex Morgan)</button>
     </form>
 
     <div class="auth-alt">Don't have an account? <a href="signup.html">Sign up</a></div>

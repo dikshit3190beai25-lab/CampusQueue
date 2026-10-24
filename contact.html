@@ -119,25 +119,25 @@
           <div class="contact-info-sub">Questions about your account, a class, or a bug you've spotted? Fill out the form and our team will reach out.</div>
 
           <div class="contact-info-list">
-            <div class="contact-row">
+            <a href="mailto:support@campusqueue.app" class="contact-row" style="text-decoration:none; color:inherit;">
               <div class="icon-btn">✉</div>
               <div class="contact-row-content">
                 <div class="contact-row-title">Email</div>
                 <div class="contact-row-sub">support@campusqueue.app</div>
               </div>
-            </div>
-            <div class="contact-row">
+            </a>
+            <a href="tel:+15550192834" class="contact-row" style="text-decoration:none; color:inherit;">
               <div class="icon-btn">📞</div>
               <div class="contact-row-content">
                 <div class="contact-row-title">Phone</div>
                 <div class="contact-row-sub">+1 (555) 019-2834</div>
               </div>
-            </div>
-            <div class="contact-row">
+            </a>
+            <div class="contact-row" id="officeInfoRow" style="cursor:pointer;" title="Click for Office Hours & Location">
               <div class="icon-btn">📍</div>
               <div class="contact-row-content">
                 <div class="contact-row-title">Office</div>
-                <div class="contact-row-sub">Student Union, Room 304</div>
+                <div class="contact-row-sub">Student Union, Room 304 (Click for hours)</div>
               </div>
             </div>
           </div>
@@ -170,6 +170,51 @@
             <div class="icn">✓</div>
             <h3>Thanks — we've got it!</h3>
             <p>We'll contact you soon at the phone number or email you gave us.</p>
+            <button type="button" class="cq-btn cq-btn-secondary" id="sendAnotherBtn" style="margin-top:14px;">Send Another Message</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div style="margin-top:36px;">
+        <div style="font-size:16px; font-weight:800; margin-bottom:4px;">Frequently Asked Questions</div>
+        <div style="font-size:12.5px; color:var(--text-2); margin-bottom:14px;">Quick answers to common questions about CampusQueue.</div>
+        <div class="faq-accordion" id="faqAccordion">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I export my academic deadlines to Google Calendar or Apple Calendar?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Navigate to the <strong>Calendar</strong> page in the sidebar and click the <strong>Export .ics</strong> button in the header. This generates a standard iCalendar schedule file that you can directly import into Google Calendar, Apple Calendar, or Microsoft Outlook.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How is my GPA calculated on the dashboard?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Your cumulative Grade Point Average is computed across all 5 semesters based on standard credit-hour weightings. You can click the <strong>Breakdown</strong> button next to the GPA card to view historical transcripts and run simulated scenarios.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I submit assignments directly through CampusQueue?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Yes! On the <strong>Assignments</strong> page, click the <strong>Submit</strong> button on any active card to attach project archives, paste repository links, or add notes for your course instructor.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I use the Focus Timer with custom intervals?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Yes! Under the Focus Timer card on your dashboard, switch to the <strong>Custom</strong> tab to choose custom focus minutes and break durations, and an audio bell will chime when the session completes.
+            </div>
           </div>
         </div>
       </div>

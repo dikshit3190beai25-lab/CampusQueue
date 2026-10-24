@@ -111,6 +111,23 @@
           <div class="page-title">Sources</div>
           <div class="page-sub">Slides, readings, and reference material from your classes.</div>
         </div>
+        <div class="page-actions" style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="cq-btn cq-btn-secondary" id="downloadAllNotesBtn" title="Download compiled course bundle">📦 Course Bundle</button>
+          <button type="button" class="cq-btn cq-btn-primary" id="addSourceBtn">+ Add Resource</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+        <div class="tab-row" id="sourceTabRow">
+          <button type="button" class="tab-btn active source-tab" data-filter="all">All Materials</button>
+          <button type="button" class="tab-btn source-tab" data-filter="pdf">📄 PDFs</button>
+          <button type="button" class="tab-btn source-tab" data-filter="video">🎞 Videos</button>
+          <button type="button" class="tab-btn source-tab" data-filter="link">🔗 Links</button>
+          <button type="button" class="tab-btn source-tab" data-filter="bookmarked">⭐ Bookmarked</button>
+        </div>
+        <div style="font-size:12px; color:var(--text-2);">
+          Curated course study materials
+        </div>
       </div>
 
       <div class="card">

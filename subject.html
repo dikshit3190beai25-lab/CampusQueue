@@ -111,6 +111,21 @@
           <div class="page-title">Subjects</div>
           <div class="page-sub">Everything you're enrolled in this semester.</div>
         </div>
+        <div class="page-actions" style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="cq-btn cq-btn-secondary" id="attendanceSummaryBtn" title="View Course Attendance Record">📊 Attendance</button>
+          <button type="button" class="cq-btn cq-btn-primary" id="addSubjectBtn">+ Add Subject</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+        <div class="tab-row" id="subjectTabRow">
+          <button type="button" class="tab-btn active subject-tab" data-filter="all">All Courses</button>
+          <button type="button" class="tab-btn subject-tab" data-filter="active">In Progress</button>
+          <button type="button" class="tab-btn subject-tab" data-filter="completed">Completed</button>
+        </div>
+        <div style="font-size:12px; color:var(--text-2);">
+          Showing <strong id="subjectCountDisplay" style="color:var(--text-1);">6</strong> enrolled courses
+        </div>
       </div>
 
       <div class="subject-grid" id="subjectGrid"></div>

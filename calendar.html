@@ -111,6 +111,10 @@
           <div class="page-title">Calendar</div>
           <div class="page-sub">Your classes, assignments, and events for the month.</div>
         </div>
+        <div class="page-actions" style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="cq-btn cq-btn-secondary" id="exportCalendarBtn" title="Download iCalendar .ics file">📅 Export .ics</button>
+          <button type="button" class="cq-btn cq-btn-primary" id="addCalendarEventBtn">+ Add Event</button>
+        </div>
       </div>
 
       <div class="big-cal-layout">
@@ -123,12 +127,21 @@
           <div class="cal-grid" id="calGrid"></div>
           <div class="cal-footer">
             <button id="calToday" class="cal-today-quick" type="button" title="Jump to Today">Today</button>
-            <button id="calDoneBtn" class="cal-done-btn" type="button">Done</button>
+            <button id="calDoneBtn" class="cal-done-btn" type="button">Select</button>
           </div>
         </div>
 
-        <div class="card">
-          <div class="events-panel-title">Upcoming events</div>
+        <div class="card" id="calendarSideCard">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="events-panel-title" style="margin-bottom:0;" id="eventsPanelTitle">Upcoming Events</div>
+            <button type="button" class="cq-btn cq-btn-sm cq-btn-ghost" id="showAllEventsBtn" style="display:none; font-size:11px;">Show All</button>
+          </div>
+          <div class="tab-row" id="calFilterTabRow" style="margin-bottom:12px; gap:4px;">
+            <button type="button" class="tab-btn active cal-filter-btn" data-cal-filter="all">All</button>
+            <button type="button" class="tab-btn cal-filter-btn" data-cal-filter="urgent">Due</button>
+            <button type="button" class="tab-btn cal-filter-btn" data-cal-filter="soon">Classes</button>
+            <button type="button" class="tab-btn cal-filter-btn" data-cal-filter="later">Events</button>
+          </div>
           <div id="eventsPanel" class="deadline-list"></div>
         </div>
       </div>

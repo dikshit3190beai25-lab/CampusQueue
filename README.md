@@ -84,29 +84,37 @@ CampusQueue/
 └── README.md
 ```
 
-## Features
+## Features & Interactive Capabilities
 
-📚 **Student Dashboard** — centralized overview of academic activities, tasks, classes and deadlines
+📚 **Student Dashboard** — Centralized overview of academic activities, daily routine, GPA chart, enrolled classes, and countdown deadlines.
 
-📝 **Task Management** — manage assignments, track tasks and monitor completion status
+📝 **Full Assignment Management Suite** — Complete CRUD for coursework assignments, priority flags (`High`, `Medium`, `Low`), submission simulation with file uploads and grading status, plus live completion rate metrics.
 
-📅 **Academic Calendar** — view classes, events and important academic dates
+📅 **Interactive Academic Calendar** — View and schedule classes, quizzes, exams, and study groups. Filter by category, view daily agendas, and export the entire schedule as an **`.ics` iCalendar file** for Google Calendar, Apple Calendar, or Outlook.
 
-📖 **Subject Management** — view subjects, instructors, schedules and progress
+📘 **Course & Syllabus Module Tracker** — Subject management with interactive syllabus module checklists (checking off modules updates course progress percentage live) and an institutional attendance tracking record.
 
-🎥 **Live Classes** — view live, upcoming and completed online classes
+🎥 **Virtual Live Classroom Suite** — Live classroom simulation featuring instructor slides, microphone/camera toggles, screen share, raise hand (✋) indicator, real-time in-class chat stream, and an interactive **Collaborative Whiteboard** canvas.
 
-🔔 **Notifications** — receive updates about assignments, classes, grades and other activities
+🔗 **Learning Sources & Study Materials** — View, preview, and download course slide decks (PDFs), video lecture captures, and reference links. Bookmark materials and export a compiled **Course Study Bundle**.
 
-💬 **Messages** — manage student messages and conversations
+💬 **Message Threads & Direct Messaging** — Message inbox with threaded conversation modal, quick reply composer, and new message composer.
 
-🔍 **Search & Filtering** — quickly find relevant academic information
+🔔 **Notifications & Reminders** — Academic alerts, deadline warnings, and class reminders with direct action links.
 
-🌙 **Theme Support** — light and dark interface support
+📊 **GPA Calculator & Transcript Simulator** — View semester-by-semester GPA trends and simulate target grades to calculate projected cumulative GPA.
 
-📱 **Responsive Design** — optimized for desktop, tablet and mobile devices
+⚡ **Command Palette / Universal Quick Search** — Press `Cmd+K` or `Ctrl+K` from any page to instantly search tasks, assignments, subjects, classes, sources, and calendar events.
 
-🎨 **Modern UI** — clean interface with interactive components, animations and visual effects
+🔊 **Synthesized Web Audio Effects** — Zero-dependency native Web Audio API chimes for task completions, timer bells, and interactive button clicks.
+
+👤 **Student Profile & Settings** — Manage student avatar, name, email, major, semester, and personal preferences with instant cross-page sync.
+
+❓ **Contact & Help Center** — Message submission, office hours guide, and an expandable interactive FAQ accordion.
+
+🔐 **Secure Client Auth & Demo Helper** — LocalStorage-backed authentication with interactive distorted canvas CAPTCHA, password toggles, password reset modal, and 1-click **Quick Demo Login**.
+
+🌙 **Dynamic Theme Engine** — Smooth dark mode and light mode switching with ambient visual lighting effects.
 
 ## Deployment
 

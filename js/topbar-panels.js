@@ -38,6 +38,12 @@
       row.addEventListener('click', () => {
         item.unread = false;
         save();
+        closeAll();
+        if (typeClass === 'type-msg') {
+          window.location.href = 'messages.html';
+        } else {
+          window.location.href = 'notifications.html';
+        }
       });
       listEl.appendChild(row);
     });
